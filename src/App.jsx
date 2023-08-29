@@ -20,7 +20,7 @@ export default function App() {
 
     const handleCardNumberChange = (event) => {
         const { value } = event.target
-        const numericValue = value.replace(/\s/g, '') // Remove existing spaces
+        const numericValue = value.replace(/\s/g, '')
         const formattedValue = numericValue
             .replace(/(\d{4})/g, '$1 ') // Add spaces every 4 digits
             .trim();
@@ -45,15 +45,15 @@ export default function App() {
                     infoUpdated={infoUpdated}
                 />
                 {
-                    infoUpdated ? 
-                    <Confirmation /> :
-                    <Form
-                        cardNumber={cardNumber}
-                        name={name}
-                        date={date}
-                        ccv={ccv}
-                        handleCardNumberChange={handleCardNumberChange}
-                        handleSubmit={updateCardInfo} />
+                    infoUpdated ?
+                        <Confirmation /> :
+                        <Form
+                            cardNumber={cardNumber}
+                            name={name}
+                            date={date}
+                            ccv={ccv}
+                            handleCardNumberChange={handleCardNumberChange}
+                            handleSubmit={updateCardInfo} />
                 }
             </div>
         </div>
