@@ -42,7 +42,7 @@ Users should be able to:
 
 ### What I learned
 
-This project helped me get more comfortable using React and challenged my css skills. I've refreshed my knowledge on props, the useRef hook, and implementing classes through JavaScript.
+This project helped me get more comfortable using React and challenged my css skills, especially making responsive pages. I've refreshed my knowledge on props, the useRef hook, and implementing classes through JavaScript.
 
 ### Continued development
 
