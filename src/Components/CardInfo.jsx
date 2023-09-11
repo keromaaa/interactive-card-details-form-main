@@ -2,7 +2,7 @@ import "../App.css"
 import { useRef, useEffect } from 'react'
 import Logo from "./Logo"
 
-export default function Cards({ cardInfo, infoUpdated }) {
+export default function CardInfo({ cardInfo, infoUpdated }) {
     const cardFrontRef = useRef(null)
     const cardBackRef = useRef(null)
     const wrapperRef = useRef(null)
@@ -38,7 +38,7 @@ export default function Cards({ cardInfo, infoUpdated }) {
 
     return (
         <div ref={wrapperRef} className="card-wrapper">
-            <div ref={cardFrontRef} className="card front">
+            <div ref={cardFrontRef} className="cardInfo front">
                 {/* <Logo width={"29%"} height={"29%"} /> */}
                 <p className="cardNumber">{infoUpdated ? cardInfo.cardNumber : "0000 0000 0000 0000"}</p>
                 <div>
@@ -46,7 +46,7 @@ export default function Cards({ cardInfo, infoUpdated }) {
                     <p className="date">{infoUpdated ? cardInfo.date : "MM/YY"}</p>
                 </div>
             </div>
-            <div ref={cardBackRef} className="card back">
+            <div ref={cardBackRef} className="cardInfo back">
                 <p className="ccv">{infoUpdated ? cardInfo.ccv : "000"}</p>
             </div>
         </div>

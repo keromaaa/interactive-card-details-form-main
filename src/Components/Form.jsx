@@ -1,10 +1,14 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useEffect, useRef } from 'react'
+import useCards from '../../hooks/useCards'
+
+import axios from 'axios'
 
 export default function Form({ cardNumber, handleCardNumberChange, handleSubmit }) {
     const [nameError, setNameError] = useState('')
     const [cardNumberError, setCardNumberError] = useState('')
     const [dateError, setDateError] = useState('')
     const [ccvError, setCcvError] = useState('')
+    const { card, setCards } = useCards();
 
     const nameRef = useRef(null)
     const numberRef = useRef(null)
@@ -67,8 +71,38 @@ export default function Form({ cardNumber, handleCardNumberChange, handleSubmit 
             const date = monthRef.current.value + "/" + yearRef.current.value
             const ccv = ccvRef.current.value
             handleSubmit(name, number, date, ccv); // Save input data in the parent component state
+
+            const card = {
+                name: name,
+                cardNumber: number,
+                expiryDate: date,
+                ccv: ccv
+            }
+
+            axios.post('https://localhost:7146/api/CardDetails/Create', card, {
+                headers: {
+                    "Content-Type": "application/json"
+                }
+            })
+                .catch(err => console.log(err))
         }
     }
+
+    useEffect(() => {
+        if (!card) {
+            nameRef.current.value = "";
+            numberRef.current.value = "";
+            monthRef.current.value = "";
+            yearRef.current.value = "";
+        } else {
+            const [monthValue, yearValue] = card ? card.date.split('/') : ['', '']
+            nameRef.current.value = card.name;
+            numberRef.current.value = card.cardNumber;
+            monthRef.current.value = monthValue;
+            yearRef.current.value = yearValue;
+        }
+    }, [card])
+
 
     return (
         <div className="form">
@@ -79,7 +113,7 @@ export default function Form({ cardNumber, handleCardNumberChange, handleSubmit 
             </div>
             <div>
                 <label htmlFor="number">CARD NUMBER</label>
-                <input ref={numberRef} type="text" name="Card number" id="number" maxLength={19} value={cardNumber} onChange={handleCardNumberChange} placeholder='e.g. 1234 5678 9000 0000' />
+                <input ref={numberRef} type="text" name="Card number" id="number" maxLength={19} onChange={handleCardNumberChange} placeholder='e.g. 1234 5678 9000 0000' />
                 <p className={`errorTxt ${cardNumberError ? 'active' : ''}`}>{cardNumberError}</p>
             </div>
             <div className="flex gap-15">

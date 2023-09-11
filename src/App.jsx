@@ -1,8 +1,9 @@
 import { React, useState } from "react"
 import './App.css'
-import Cards from './Components/Cards.jsx'
+import CardInfo from './Components/CardInfo.jsx'
 import Form from './Components/Form.jsx'
 import Confirmation from './Components/Confirmation.jsx'
+import Navbar from "./Components/Navbar"
 
 export default function App() {
     const [cardNumber, setCardNumber] = useState('')
@@ -10,6 +11,7 @@ export default function App() {
     const [date, setDate] = useState("")
     const [ccv, setCcv] = useState("")
     const [infoUpdated, setInfoUpdated] = useState(false)
+    const [menuOn, setMenuOn] = useState(false)
 
     const cardInfo = {
         cardNumber: cardNumber,
@@ -36,11 +38,16 @@ export default function App() {
         setInfoUpdated(true)
     }
 
+    const handleClick = () => {
+        setMenuOn((prevMenuOn) => !prevMenuOn)
+    }
+
     return (
         <div className="app">
             <div className="background"></div>
             <div className="main">
-                <Cards
+                <Navbar onClick={handleClick} toggled={menuOn} />
+                <CardInfo
                     cardInfo={cardInfo}
                     infoUpdated={infoUpdated}
                 />
@@ -53,7 +60,8 @@ export default function App() {
                             date={date}
                             ccv={ccv}
                             handleCardNumberChange={handleCardNumberChange}
-                            handleSubmit={updateCardInfo} />
+                            handleSubmit={updateCardInfo}
+                        />
                 }
             </div>
         </div>
