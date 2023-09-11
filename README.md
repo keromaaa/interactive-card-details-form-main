@@ -25,10 +25,7 @@ Users should be able to:
   - The card number, expiry date, or CVC fields are in the wrong format
 - View the optimal layout depending on their device's screen size
 - See hover, active, and focus states for interactive elements on the page
-
-### Links
-
-- Live Site URL: (https://cosmic-licorice-04d46d.netlify.app/)
+- Upload used cards to custom card-api with the ability to load and reuse old cards
 
 ## My process
 
@@ -42,9 +39,10 @@ Users should be able to:
 
 ### What I learned
 
-This project helped me get more comfortable using React and challenged my css skills, especially making responsive pages. I've refreshed my knowledge on props, the useRef hook, and implementing classes through JavaScript.
+This project helped me get more comfortable using React and challenged my css skills, especially making responsive pages. I've refreshed my knowledge on props, the useRef hook, and implementing classes through JavaScript. I have learned the basics of fetching, posting and deleting data from APIs.
 
 ### Continued development
+I will continue to update this project, as the css could be better, also, I will prevent cards with identical info from being added to the API, considering that the current version of the app views those cards as different.
 
 For my next few projects, I will need to educate myself on svgs and ways to scale and resize them, because currently I haven't figured out a simple way to do that. Also, I will figure out a way to create rounded borders with a gradient. Finally, I will further get used to using React, mainly creating even more custom components for smaller things, and passing props more efficiently by passing them through objects.
 
