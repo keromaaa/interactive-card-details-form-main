@@ -1,9 +1,10 @@
-import { React, useState } from "react"
+import React, { useState, useEffect } from "react"
 import './App.css'
 import CardInfo from './Components/CardInfo.jsx'
 import Form from './Components/Form.jsx'
 import Confirmation from './Components/Confirmation.jsx'
 import Navbar from "./Components/Navbar"
+import MenuProvider from "../context/MenuContext"
 
 export default function App() {
     const [cardNumber, setCardNumber] = useState('')
@@ -11,7 +12,6 @@ export default function App() {
     const [date, setDate] = useState("")
     const [ccv, setCcv] = useState("")
     const [infoUpdated, setInfoUpdated] = useState(false)
-    const [menuOn, setMenuOn] = useState(false)
 
     const cardInfo = {
         cardNumber: cardNumber,
@@ -28,7 +28,7 @@ export default function App() {
             .trim();
 
         setCardNumber(formattedValue)
-    };
+    }
 
     const updateCardInfo = (name, cardNumber, date, ccv) => {
         setCardNumber(cardNumber)
@@ -38,15 +38,15 @@ export default function App() {
         setInfoUpdated(true)
     }
 
-    const handleClick = () => {
-        setMenuOn((prevMenuOn) => !prevMenuOn)
-    }
+
 
     return (
         <div className="app">
             <div className="background"></div>
             <div className="main">
-                <Navbar onClick={handleClick} toggled={menuOn} />
+                <MenuProvider>
+                    <Navbar />
+                </MenuProvider>
                 <CardInfo
                     cardInfo={cardInfo}
                     infoUpdated={infoUpdated}

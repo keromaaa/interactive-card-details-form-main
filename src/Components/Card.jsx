@@ -1,10 +1,12 @@
 import React from 'react'
 
+import useMenu from '../../hooks/useMenu'
 import useCards from '../../hooks/useCards'
 import axios from 'axios'
 
-const Card = ({ id, onClick, cardNumber, name, date }) => {
+const Card = ({ id, cardNumber, name, date }) => {
     const { setCard, getCard, getCards } = useCards()
+    const { handleBurgerClick } = useMenu()
 
     const deleteCard = () => {
         axios
@@ -12,13 +14,16 @@ const Card = ({ id, onClick, cardNumber, name, date }) => {
             .then(response => response.data)
             .then(data => data.data)
             .catch(err => console.log(err))
-            .finally(() => { getCards(); onClick(); })
+            .finally(() => {
+                getCards()
+                handleBurgerClick()
+            })
     }
 
     return (
         <div className="wrapper">
             <div className="card" onClick={() => {
-                onClick()
+                handleBurgerClick()
                 getCard(cardNumber, name, date)
             }}>
                 <p className="cardNumber">{cardNumber}</p>

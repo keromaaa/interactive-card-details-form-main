@@ -8,7 +8,7 @@ export default function Form({ cardNumber, handleCardNumberChange, handleSubmit 
     const [cardNumberError, setCardNumberError] = useState('')
     const [dateError, setDateError] = useState('')
     const [ccvError, setCcvError] = useState('')
-    const { card, setCards } = useCards();
+    const { card } = useCards()
 
     const nameRef = useRef(null)
     const numberRef = useRef(null)
@@ -90,16 +90,16 @@ export default function Form({ cardNumber, handleCardNumberChange, handleSubmit 
 
     useEffect(() => {
         if (!card) {
-            nameRef.current.value = "";
-            numberRef.current.value = "";
-            monthRef.current.value = "";
-            yearRef.current.value = "";
+            nameRef.current.value = ""
+            numberRef.current.value = ""
+            monthRef.current.value = ""
+            yearRef.current.value = ""
         } else {
             const [monthValue, yearValue] = card ? card.date.split('/') : ['', '']
-            nameRef.current.value = card.name;
-            numberRef.current.value = card.cardNumber;
-            monthRef.current.value = monthValue;
-            yearRef.current.value = yearValue;
+            nameRef.current.value = card.name
+            numberRef.current.value = card.cardNumber
+            monthRef.current.value = monthValue
+            yearRef.current.value = yearValue
         }
     }, [card])
 
